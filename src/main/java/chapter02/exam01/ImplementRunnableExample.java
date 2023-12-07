@@ -3,9 +3,8 @@ package chapter02.exam01;
 public class ImplementRunnableExample {
 
     public static void main(String[] args) {
-        ExtendThreadExample.MyThread myThread = new ExtendThreadExample.MyThread();
-
-        myThread.start();
+        MyThread myThread = new MyThread();
+        myThread.run();
     }
 
     static class MyThread implements Runnable {
