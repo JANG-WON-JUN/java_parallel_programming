@@ -1,12 +1,13 @@
-package chaptor01.exam01;
+package chapter01.exam01;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParallelismExample {
+public class ConcurrencyExample {
 
     public static void main(String[] args) {
-        int cpuCores = Runtime.getRuntime().availableProcessors();
+        // cpu 갯수보다 작업의 갯수를 더 크게 하기 위해 2를 곱해준다.
+        int cpuCores = Runtime.getRuntime().availableProcessors() * 2;
 
         // cpu 코어만큼 데이터를 생성
         List<Integer> data = new ArrayList<>();
@@ -15,7 +16,6 @@ public class ParallelismExample {
             data.add(i);
         }
 
-        // cpu 갯수만큼 데이터를 병렬로 처리
         long startTime1 = System.currentTimeMillis();
 
         long sum1 = data.parallelStream()
@@ -31,9 +31,8 @@ public class ParallelismExample {
 
         long endTime1 = System.currentTimeMillis();
 
-        // 만약 1개의 코어로 계산한다면, 코어 갯수 * 500ms 시간 이상이 소요되어야 한다.
-        // 그러나 병렬로 처리하면 보다 빠르게 실행할 수 있다.
-        System.out.println("cpu 코어 " + cpuCores + "개로 연산한 시간 >> " + (endTime1 - startTime1) + "ms");
+        // cpu 코어 갯수를 초과하는 작업을 처리하면 병렬성 + 동시성을 활용하여 처리한다.
+        System.out.println("cpu 코어를 초과한 작업을 연산한 시간 >> " + (endTime1 - startTime1) + "ms");
         System.out.println("합계 >> " + sum1);
     }
 }

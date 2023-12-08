@@ -1,4 +1,4 @@
-package chaptor01.exam02;
+package chapter01.exam02;
 
 public class ContextSwitchExample {
 
